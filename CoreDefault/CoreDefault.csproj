@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CoreDefault.BL\CoreDefault.BL.csproj" />
     <ProjectReference Include="..\CoreDefault.Entity\CoreDefault.Entity.csproj" />
     <ProjectReference Include="..\CoreDefult.DAL\CoreDefult.DAL.csproj" />

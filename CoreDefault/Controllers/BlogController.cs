@@ -13,5 +13,10 @@ namespace CoreDefault.Controllers
             var values = bm.GetListWithCategory();
             return View(values);
         }
+        public IActionResult ReadAll(int id)
+        {
+            var values = bm.GetBlogById(id);
+            return View(values);
+        }
     }
 }

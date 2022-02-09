@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31829.152
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDefault", "CoreDefault\CoreDefault.csproj", "{B70B1DEF-04B3-4042-BE0C-0414CC8B299C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDefault.Web", "CoreDefault\CoreDefault.Web.csproj", "{B70B1DEF-04B3-4042-BE0C-0414CC8B299C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDefault.Entity", "CoreDefault.Entity\CoreDefault.Entity.csproj", "{6C3EC852-06F0-4056-B7D4-08DBB3E7AF54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDefault.Entity", "CoreDefault.Entity\CoreDefault.Entity.csproj", "{6C3EC852-06F0-4056-B7D4-08DBB3E7AF54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDefult.DAL", "CoreDefult.DAL\CoreDefult.DAL.csproj", "{AA57B373-76E9-47B1-8A7D-564DCE10FC8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDefult.DAL", "CoreDefult.DAL\CoreDefult.DAL.csproj", "{AA57B373-76E9-47B1-8A7D-564DCE10FC8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDefault.BL", "CoreDefault.BL\CoreDefault.BL.csproj", "{29BDC9DB-F562-427F-B52D-4C45506183CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDefault.BL", "CoreDefault.BL\CoreDefault.BL.csproj", "{29BDC9DB-F562-427F-B52D-4C45506183CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDefault.Core", "CoreDefault.Core\CoreDefault.Core.csproj", "{AD79E788-EA17-40F8-913B-673C3CF4417D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDefault.Core", "CoreDefault.Core\CoreDefault.Core.csproj", "{AD79E788-EA17-40F8-913B-673C3CF4417D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

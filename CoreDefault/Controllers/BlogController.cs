@@ -10,7 +10,7 @@ namespace CoreDefault.Controllers
 
         public IActionResult Index()
         {
-            var values = bm.GetList();
+            var values = bm.GetListWithCategory();
             return View(values);
         }
     }

@@ -14,4 +14,10 @@
     <ProjectReference Include="..\CoreDefult.DAL\CoreDefult.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\CoreThemeWeb\images\7.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

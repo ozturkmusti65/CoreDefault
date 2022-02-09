@@ -14,5 +14,6 @@ namespace CoreDefault.BL.Abstract
         void UpdateBlog(Blog blog);
         List<Blog> GetList();
         Blog GetById(int id);
+        List<Blog> GetListWithCategory();
     }
 }

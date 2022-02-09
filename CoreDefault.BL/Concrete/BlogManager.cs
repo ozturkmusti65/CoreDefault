@@ -37,6 +37,11 @@ namespace CoreDefault.BL.Concrete
             return _blogDal.GetListAll();
         }
 
+        public List<Blog> GetListWithCategory()
+        {
+            return _blogDal.GetListWithCategory();
+        }
+
         public void UpdateBlog(Blog blog)
         {
             _blogDal.Update(blog);

@@ -25,7 +25,7 @@ namespace CoreDefault.BL.Concrete
 
         public List<Comment> GetList(int id)
         {
-            return _commentDal.GetListAll(x => x.Id == id);
+            return _commentDal.GetListAll(x => x.BlogId == id);
         }
     }
 }

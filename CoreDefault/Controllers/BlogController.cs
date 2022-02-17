@@ -15,6 +15,7 @@ namespace CoreDefault.Controllers
         }
         public IActionResult ReadAll(int id)
         {
+            ViewBag.i = id;
             var values = bm.GetBlogById(id);
             return View(values);
         }

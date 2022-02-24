@@ -1,0 +1,36 @@
+﻿<div class="tech-btm">
+    <h4>Mail Bültenine Abone Olun</h4>
+    <p>Teknoloji,yazılım ve diğer bloglar... </p>
+    <div>
+        <input type="email" placeholder="Email" required="" name="Mail">
+        <label id="yanlis" style="color:red"></label>
+        <input type="submit" id="aboneOl" onclick="AboneOl()" value="Abone ol">
+    </div>
+
+</div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    function AboneOl(){
+        var mail = document.getElementsByName("Mail")[0].value;
+    var data = {
+        Mail:mail,
+    }
+    if(mail.length > 0){
+        $.ajax({
+            type: 'POST',
+            url: '/NewsLetter/SubscribeMail',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8', // when we use .serialize() this generates the data in query string format. this needs the default contentType (default content type is: contentType: 'application/x-www-form-urlencoded; charset=UTF-8') so it is optional, you can remove it
+            data: data,
+            success: function (result) {
+                swal("İşlem Başarılı", "Kapatmak için tıklayınız!", "success");
+            },
+            error: function () {
+                swal("İşlem Başarısız", "Kapatmak için tıklayınız!", "error");
+            }
+        })
+    }else{
+        $('#yanlis')[0].innerText="Lütfen mail giriniz!"
+    }
+    }
+
+</script>

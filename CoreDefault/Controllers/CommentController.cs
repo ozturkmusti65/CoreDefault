@@ -1,6 +1,8 @@
 ﻿using CoreDefault.BL.Concrete;
+using CoreDefault.Entity.Concrete;
 using CoreDefult.DAL.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace CoreDefault.Web.Controllers
 {
@@ -11,8 +13,18 @@ namespace CoreDefault.Web.Controllers
         {
             return View();
         }
+        [HttpGet]
         public PartialViewResult PartialAddComment()
         {
+            return PartialView();
+        }
+        [HttpPost]
+        public PartialViewResult PartialAddComment(Comment c)
+        {
+            c.Date = DateTime.Parse(DateTime.Now.ToShortDateString());
+            c.Status = true;
+            c.BlogId = 2;
+            cm.AddComment(c);
             return PartialView();
         }
         public PartialViewResult CommentListByBlog(int id)

@@ -51,5 +51,10 @@ namespace CoreDefault.BL.Concrete
         {
             _blogDal.Update(blog);
         }
+
+        public List<Blog> GetListByWriter(int id)
+        {
+            return _blogDal.GetListAll(x => x.WriterId == id);
+        }
     }
 }

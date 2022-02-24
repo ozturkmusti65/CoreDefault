@@ -15,5 +15,6 @@ namespace CoreDefault.BL.Abstract
         List<Blog> GetList();
         Blog GetById(int id);
         List<Blog> GetListWithCategory();
+        List<Blog> GetListByWriter(int id);
     }
 }

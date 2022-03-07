@@ -4,6 +4,7 @@ using CoreDefault.Entity.Concrete;
 using CoreDefult.DAL.EntityFramework;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.RegularExpressions;
 
 namespace CoreDefault.Web.Controllers
 {
@@ -20,7 +21,8 @@ namespace CoreDefault.Web.Controllers
         {
             WriterValidator wv = new WriterValidator();
             ValidationResult result = wv.Validate(writer);
-            if (result.IsValid)
+            var m = Regex.Match(writer.Password, @"((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,})");
+            if (result.IsValid && m.Success)
             {
                 writer.Status = true;
                 writer.About = "Deneme Test";
@@ -32,6 +34,10 @@ namespace CoreDefault.Web.Controllers
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                if (!m.Success)
+                {
+                    ViewBag.result = "Lütfen şifrenizi en az bir rakam, bir küçük harf ve bir büyük harf içermesine özen gösteriniz!";
                 }
             }
             return View();

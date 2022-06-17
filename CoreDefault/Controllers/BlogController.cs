@@ -1,9 +1,11 @@
 ﻿using CoreDefault.BL.Concrete;
 using CoreDefult.DAL.EntityFramework;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDefault.Controllers
 {
+    [AllowAnonymous]
     public class BlogController : Controller
     {
         BlogManager bm = new BlogManager(new EFBlogRepository());

@@ -37,6 +37,11 @@ namespace CoreDefault.BL.Concrete
             return _blogDal.GetListAll();
         }
 
+        public List<Blog> GetLastThreeBlog()
+        {
+            return _blogDal.GetListAll().Take(3).ToList();
+        }
+
         public List<Blog> GetListWithCategory()
         {
             return _blogDal.GetListWithCategory();

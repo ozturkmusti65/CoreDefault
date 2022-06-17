@@ -36,6 +36,9 @@ namespace CoreDefault
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
 
+            services.AddMvc().AddSessionStateTempDataProvider();
+            services.AddSession();
+
             services.AddMvc();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(x =>
@@ -58,7 +61,7 @@ namespace CoreDefault
                 app.UseHsts();
             }
 
-            app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1","?code={0}");
+            app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1", "?code={0}");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

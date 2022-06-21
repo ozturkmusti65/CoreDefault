@@ -17,17 +17,8 @@ namespace CoreDefault.BL.Concrete
         {
             _blogDal = blogDal;
         }
-        public void AddBlog(Blog blog)
-        {
-            _blogDal.Insert(blog);
-        }
-
-        public void DeleteBlog(Blog blog)
-        {
-            _blogDal.Delete(blog);
-        }
-
-        public Blog GetById(int id)
+        
+        public Blog TGetById(int id)
         {
             return _blogDal.GetById(id);
         }
@@ -46,20 +37,34 @@ namespace CoreDefault.BL.Concrete
         {
             return _blogDal.GetListWithCategory();
         }
+        public List<Blog> GetListWithCategoryByWriterBm(int Id)
+        {
+            return _blogDal.GetListWithCategoryByWriter(Id);
+        }
 
         public List<Blog> GetBlogById(int id)
         {
             return _blogDal.GetListAll(x => x.Id == id);
         }
 
-        public void UpdateBlog(Blog blog)
-        {
-            _blogDal.Update(blog);
-        }
-
         public List<Blog> GetListByWriter(int id)
         {
             return _blogDal.GetListAll(x => x.WriterId == id);
+        }
+
+        public void TAdd(Blog t)
+        {
+            _blogDal.Insert(t);
+        }
+
+        public void TDelete(Blog t)
+        {
+            _blogDal.Delete(t);
+        }
+
+        public void TUpdate(Blog t)
+        {
+            _blogDal.Update(t);
         }
     }
 }

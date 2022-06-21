@@ -20,5 +20,13 @@ namespace CoreDefult.DAL.EntityFramework
                 return c.Blogs.Include(x => x.Category).ToList();
             }
         }
+
+        public List<Blog> GetListWithCategoryByWriter(int Id)
+        {
+            using (var c = new Context())
+            {
+                return c.Blogs.Include(x => x.Category).Where(x => x.WriterId == Id).ToList();
+            }
+        }
     }
 }

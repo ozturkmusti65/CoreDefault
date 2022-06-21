@@ -7,13 +7,8 @@ using System.Threading.Tasks;
 
 namespace CoreDefault.BL.Abstract
 {
-    public interface IBlogService
+    public interface IBlogService : IGenericService<Blog>
     {
-        void AddBlog(Blog blog);
-        void DeleteBlog(Blog blog);
-        void UpdateBlog(Blog blog);
-        List<Blog> GetList();
-        Blog GetById(int id);
         List<Blog> GetListWithCategory();
         List<Blog> GetListByWriter(int id);
     }

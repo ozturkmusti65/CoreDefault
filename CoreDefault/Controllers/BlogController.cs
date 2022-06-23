@@ -17,7 +17,7 @@ namespace CoreDefault.Controllers
     public class BlogController : Controller
     {
         BlogManager bm = new BlogManager(new EFBlogRepository());
-
+        CategoryManager cm = new CategoryManager(new EFCategoryRepository());
         public IActionResult Index()
         {
             var values = bm.GetListWithCategory();
@@ -35,10 +35,8 @@ namespace CoreDefault.Controllers
             return View(values);
         }
 
-        [HttpGet]
-        public IActionResult BlogAdd()
+        public void CategoryList()
         {
-            CategoryManager cm = new CategoryManager(new EFCategoryRepository());
             List<SelectListItem> categoryValues = (from x in cm.GetList()
                                                    select new SelectListItem
                                                    {
@@ -46,12 +44,19 @@ namespace CoreDefault.Controllers
                                                        Value = x.Id.ToString()
                                                    }).ToList();
             ViewBag.cv = categoryValues;
+        }
+
+        [HttpGet]
+        public IActionResult BlogAdd()
+        {
+            CategoryList();
             return View();
         }
 
         [HttpPost]
         public IActionResult BlogAdd(Blog blog)
         {
+            CategoryList();
             BlogValidator bv = new BlogValidator();
             ValidationResult result = bv.Validate(blog);
             if (result.IsValid)
@@ -76,6 +81,24 @@ namespace CoreDefault.Controllers
         {
             var blogValue = bm.TGetById(Id);
             bm.TDelete(blogValue);
+            return RedirectToAction("BlogListByWriter");
+        }
+
+        [HttpGet]
+        public IActionResult EditBlog(int id)
+        {
+            var blogValue = bm.TGetById(id);
+            CategoryList();
+            return View(blogValue);
+        }
+
+        [HttpPost]
+        public IActionResult EditBlog(Blog p)
+        {
+            var lastBlog = bm.TGetById(p.Id);
+            p.WriterId = lastBlog.WriterId;
+            p.CreateDate = lastBlog.CreateDate;
+            bm.TUpdate(p);
             return RedirectToAction("BlogListByWriter");
         }
     }

@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using CoreDefult.DAL.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace CoreDefault.Web.Controllers
 {
@@ -8,6 +10,10 @@ namespace CoreDefault.Web.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
+            Context c = new Context();
+            ViewBag.v1 = c.Blogs.Count().ToString();
+            ViewBag.v2 = c.Blogs.Where(x => x.WriterId == 5).Count().ToString();
+            ViewBag.v3 = c.Categories.Count().ToString();
             return View();
         }
     }

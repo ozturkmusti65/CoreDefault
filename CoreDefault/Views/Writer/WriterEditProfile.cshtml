@@ -11,6 +11,7 @@
             <div class="card-body">
                 <h4 class="card-title">Yazar Profil Bilgileri Düzenleme</h4>
                 <br />
+                @Html.HiddenFor(x => x.Id, new {@class="form-control"})
                 <form class="forms-sample">
                     <div class="form-group">
                         <label for="exampleInputName1">Yazar Ad Soyad</label>
@@ -22,7 +23,14 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword4">Şifre</label>
-                        @Html.PasswordFor(x => x.Password, new {@class="form-control"})
+                        @Html.PasswordFor(x => x.Password, new {@class="form-control", @id="password1", @onkeyup="funcSifreOnay()"})
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword4">Şifreyi Onayla</label>
+                        @Html.PasswordFor(x => x.Password, new { @class="form-control", @id="password2", @onkeyup="funcSifreOnay()" })
+                    </div>
+                    <div class="form-group">
+                        <label id="passOnay" style="color:red;">Şifre Eşleşmedi</label>
                     </div>
                     <div class="form-group">
                         <label>Yazar Görsel</label>
@@ -38,10 +46,25 @@
                         <label for="exampleTextarea1">Yazar Hakkında</label>
                         @Html.TextAreaFor(x => x.About, 10,3, new {@class="form-control"})
                     </div>
-                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
+                    <button type="submit" class="btn btn-gradient-primary mr-2">Güncelle</button>
+                    <button class="btn btn-light">Vazgeç</button>
                 </form>
             </div>
         </div>
     </div>
 }
+<script>
+    function funcSifreOnay(){
+        var pass1 = $("#password1").val();
+        var pass2 = $("#password2").val();
+        if(pass1.length > 0 && pass2.length > 0 && pass1 == pass2){
+            $('#passOnay')[0].textContent="Şifreler Eşleşti."
+            document.getElementById("passOnay").style.color = "#01cd74"
+            document.getElementById("kayit").disabled = false;
+        }else{
+            $('#passOnay')[0].textContent="Şifreler Eşleşmedi."
+            document.getElementById("passOnay").style.color = "red"
+            document.getElementById("kayit").disabled = true;
+        }
+    }
+</script>

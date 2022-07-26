@@ -1,11 +1,10 @@
-﻿@model CoreDefault.Entity.Concrete.Writer
+﻿@model CoreDefault.Web.Models.AddProfileImage
 @{
-    ViewData["Title"] = "WriterEditProfile";
+    ViewData["Title"] = "WriterAdd";
     Layout = "~/Views/Shared/WriterLayout.cshtml";
 }
 
-@using (Html.BeginForm("WriterEditProfile", "Writer", FormMethod.Post))
-{
+<form class="form-group" method="post" enctype="multipart/form-data">
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -30,43 +29,39 @@
                         @Html.PasswordFor(x => x.Password, new { @class="form-control", @id="password2", @onkeyup="funcSifreOnay()" })
                     </div>
                     <div class="form-group">
-                        <label id="passOnay" style="color:red;">Şifreler Eşleşmedi</label>
+                    <label id="passOnay" style="color:red;">Şifreler Eşleşmedi</label>
                     </div>
                     <div class="form-group">
                         <label>Yazar Görsel</label>
-                        <input type="file" name="img[]" class="file-upload-default">
-                        <div class="input-group col-xs-12">
-                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                            <span class="input-group-append">
-                                <button class="file-upload-browse btn btn-gradient-primary" type="button">Resim Seç</button>
-                            </span>
-                        </div>
+                        <input type="file" name="Image">
+
                     </div>
                     <div class="form-group">
                         <label for="exampleTextarea1">Yazar Hakkında</label>
                         @Html.TextAreaFor(x => x.About, 10,3, new {@class="form-control"})
                     </div>
-                    <button type="submit" id="kayit" title="Lütfen Şifrenizi Kontrol Edin !!" disabled class="btn btn-gradient-primary mr-2">Güncelle</button>
+                    <button type="submit" id="kayit" title="Lütfen Şifrenizi Kontrol Edin !!" disabled class="btn btn-gradient-primary mr-2">Kaydet</button>
                     <button class="btn btn-light">Vazgeç</button>
                 </form>
             </div>
         </div>
     </div>
-}
+</form>
+
 <script>
-    function funcSifreOnay(){
+    function funcSifreOnay() {
         var pass1 = $("#password1").val();
         var pass2 = $("#password2").val();
-        if(pass1.length > 0 && pass2.length > 0 && pass1 == pass2){
-            $('#passOnay')[0].textContent="Şifreler Eşleşti."
+        if (pass1.length > 0 && pass2.length > 0 && pass1 == pass2) {
+            $('#passOnay')[0].textContent = "Şifreler Eşleşti."
             document.getElementById("passOnay").style.color = "#01cd74"
             document.getElementById("kayit").disabled = false;
-            document.getElementById("kayit").title="Şifreniz Onaylandı."
-        }else{
-            $('#passOnay')[0].textContent="Şifreler Eşleşmedi."
+            document.getElementById("kayit").title = "Şifreniz Onaylandı."
+        } else {
+            $('#passOnay')[0].textContent = "Şifreler Eşleşmedi."
             document.getElementById("passOnay").style.color = "red"
             document.getElementById("kayit").disabled = true;
-            document.getElementById("kayit").title="Lütfen Şifrenizi Kontrol Edin !!"
+            document.getElementById("kayit").title = "Lütfen Şifrenizi Kontrol Edin !!"
         }
     }
 </script>

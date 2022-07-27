@@ -15,5 +15,7 @@ namespace CoreDefault.Entity.Concrete
         public string Password { get; set; }
         public bool Status { get; set; }
         public List<Blog> Blogs { get; set; }
+        public virtual ICollection<Message2> Sender { get; set; }
+        public virtual ICollection<Message2> Receiver { get; set; }
     }
 }

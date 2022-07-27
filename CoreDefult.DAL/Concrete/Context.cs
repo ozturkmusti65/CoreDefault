@@ -15,6 +15,20 @@ namespace CoreDefult.DAL.Concrete
             optionsBuilder.UseNpgsql("User ID=postgres;Password=1234;Server =localhost;Port=5432;Database=CoreDefaultDb;");
             //optionsBuilder.UseNpgsql("User ID=root;Password=1234;Host=localhost;Port=5432;Database=CoreDefaultDb;Pooling=true;Min Pool Size=0;Max Pool Size=100;Connection Lifetime=0;");
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Message2>()
+                .HasOne(x => x.SenderUser)
+                .WithMany(y => y.Sender)
+                .HasForeignKey(z => z.SenderId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<Message2>()
+                .HasOne(x => x.ReceiverUser)
+                .WithMany(y => y.Receiver)
+                .HasForeignKey(z => z.ReveiverId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+        }
 
         public DbSet<About> Abouts{ get; set; }
         public DbSet<Blog> Blogs{ get; set; }
@@ -26,5 +40,6 @@ namespace CoreDefult.DAL.Concrete
         public DbSet<BlogRayting> BlogRaytings { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Message2> Message2s { get; set; }
     }
 }

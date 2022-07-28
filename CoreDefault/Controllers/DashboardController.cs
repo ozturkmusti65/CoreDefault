@@ -7,7 +7,6 @@ namespace CoreDefault.Web.Controllers
 {
     public class DashboardController : Controller
     {
-        [AllowAnonymous]
         public IActionResult Index()
         {
             Context c = new Context();

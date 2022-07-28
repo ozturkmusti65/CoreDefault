@@ -2,20 +2,28 @@
 using CoreDefault.BL.ValidationRules;
 using CoreDefault.Entity.Concrete;
 using CoreDefault.Web.Models;
+using CoreDefult.DAL.Concrete;
 using CoreDefult.DAL.EntityFramework;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace CoreDefault.Web.Controllers
 {
     public class WriterController : Controller
     {
         WriterManager wm = new WriterManager(new EFWriterRepository());
+        [Authorize]
         public IActionResult Index()
         {
+            var usermail = User.Identity.Name;
+            ViewBag.v = usermail;
+            Context c = new Context();
+            var writerName = c.Writers.Where(w => w.Mail == usermail).Select(y => y.Name).FirstOrDefault();
+            ViewBag.v2 = writerName;
             return View();
         }
         public IActionResult WriterProfile()
@@ -41,14 +49,15 @@ namespace CoreDefault.Web.Controllers
         {
             return PartialView();
         }
-        [AllowAnonymous]
         [HttpGet]
         public PartialViewResult WriterEditProfile()
         {
-            var writerValues = wm.TGetById(5);
+            var usermail = User.Identity.Name;
+            Context c = new Context();
+            var writerId = c.Writers.Where(w => w.Mail == usermail).Select(y => y.Id).FirstOrDefault();
+            var writerValues = wm.TGetById(writerId);
             return PartialView(writerValues);
         }
-        [AllowAnonymous]
         [HttpPost]
         public IActionResult WriterEditProfile(Writer p)
         {

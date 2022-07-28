@@ -40,7 +40,7 @@ namespace CoreDefault.BL.Concrete
 
         public Message2 TGetById(int id)
         {
-            throw new NotImplementedException();
+            return _message2dal.GetById(id);
         }
 
         public void TUpdate(Message2 t)

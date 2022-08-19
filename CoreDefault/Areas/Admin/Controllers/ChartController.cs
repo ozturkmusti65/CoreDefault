@@ -30,6 +30,11 @@ namespace CoreDefault.Web.Areas.Admin.Controllers
                 CategoryName = "Spor",
                 CategoryCount = 5
             });
+            list.Add(new CategoryClass
+            {
+                CategoryName = "Sinema",
+                CategoryCount = 2
+            });
             return Json(new { jsonlist = list});
         }
     }

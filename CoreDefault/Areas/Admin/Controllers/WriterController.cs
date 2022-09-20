@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CoreDefault.Web.Areas.Admin.Controllers
 {
@@ -16,6 +17,36 @@ namespace CoreDefault.Web.Areas.Admin.Controllers
         public IActionResult WriterList()
         {
             var jsonWriter = JsonConvert.SerializeObject(writers);
+            return Json(jsonWriter);
+        }
+
+        public IActionResult GetWriterById(int writerid)
+        {
+            var findWriter = writers.FirstOrDefault(x => x.Id == writerid);
+            var jsonwriters = JsonConvert.SerializeObject(findWriter);
+            return Json(jsonwriters);
+        }
+
+        public IActionResult DeleteWriter(int writerid)
+        {
+            var writer = writers.FirstOrDefault(x => x.Id == writerid);
+            writers.Remove(writer);
+            return Json(writer);
+        }
+
+        [HttpPost]
+        public IActionResult AddWriter(WriterClass w)
+        {
+            writers.Add(w);
+            var jsonWriter = JsonConvert.SerializeObject(writers);
+            return Json(jsonWriter);
+        }
+
+        public IActionResult UpdateWriter(WriterClass w)
+        {
+            var writer = writers.FirstOrDefault(x => x.Id == w.Id);
+            writer.Name = w.Name;
+            var jsonWriter = JsonConvert.SerializeObject(writer);
             return Json(jsonWriter);
         }
 

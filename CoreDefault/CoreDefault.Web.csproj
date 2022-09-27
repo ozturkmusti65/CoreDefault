@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CoreDefault.API\CoreDefault.API.csproj" />
     <ProjectReference Include="..\CoreDefault.BL\CoreDefault.BL.csproj" />
     <ProjectReference Include="..\CoreDefault.Entity\CoreDefault.Entity.csproj" />
     <ProjectReference Include="..\CoreDefult.DAL\CoreDefult.DAL.csproj" />

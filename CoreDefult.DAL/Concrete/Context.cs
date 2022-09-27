@@ -1,4 +1,5 @@
 ﻿using CoreDefault.Entity.Concrete;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CoreDefult.DAL.Concrete
 {
-    public class Context : DbContext
+    public class Context : IdentityDbContext<AppUser>
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,6 +29,8 @@ namespace CoreDefult.DAL.Concrete
                 .WithMany(y => y.Receiver)
                 .HasForeignKey(z => z.ReveiverId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<About> Abouts{ get; set; }

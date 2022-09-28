@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CoreDefult.DAL.Concrete
 {
-    public class Context : IdentityDbContext<AppUser>
+    public class Context : IdentityDbContext<AppUser, AppRole, int>
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -33,11 +33,11 @@ namespace CoreDefult.DAL.Concrete
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<About> Abouts{ get; set; }
-        public DbSet<Blog> Blogs{ get; set; }
-        public DbSet<Category> Categories{ get; set; }
-        public DbSet<Comment> Comments{ get; set; }
-        public DbSet<Contact> Contacts{ get; set; }
+        public DbSet<About> Abouts { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
         public DbSet<Writer> Writers { get; set; }
         public DbSet<NewsLetter> NewsLetters { get; set; }
         public DbSet<BlogRayting> BlogRaytings { get; set; }

@@ -19,11 +19,13 @@ namespace CoreDefault.Controllers
         BlogManager bm = new BlogManager(new EFBlogRepository());
         CategoryManager cm = new CategoryManager(new EFCategoryRepository());
         Context c = new Context();
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var values = bm.GetListWithCategory();
             return View(values);
         }
+        [AllowAnonymous]
         public IActionResult ReadAll(int id)
         {
             ViewBag.i = id;

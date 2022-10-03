@@ -6,16 +6,26 @@ using CoreDefult.DAL.Concrete;
 using CoreDefult.DAL.EntityFramework;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CoreDefault.Web.Controllers
 {
     public class WriterController : Controller
     {
         WriterManager wm = new WriterManager(new EFWriterRepository());
+
+        private readonly UserManager<AppUser> _userManager;
+
+        public WriterController(UserManager<AppUser> userManager)
+        {
+            _userManager = userManager;
+        }
+
         [Authorize]
         public IActionResult Index()
         {
@@ -50,32 +60,34 @@ namespace CoreDefault.Web.Controllers
             return PartialView();
         }
         [HttpGet]
-        public PartialViewResult WriterEditProfile()
+        public async Task<IActionResult> WriterEditProfile()
         {
-            var usermail = User.Identity.Name;
-            Context c = new Context();
-            var writerId = c.Writers.Where(w => w.Mail == usermail).Select(y => y.Id).FirstOrDefault();
-            var writerValues = wm.TGetById(writerId);
-            return PartialView(writerValues);
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            UserUpdateViewModel model = new UserUpdateViewModel();
+            model.Mail = values.Email;
+            model.NameSurname = values.NameSurname;
+            model.ImageUrl = values.ImageUrl;
+            model.UserName = values.UserName;
+            return View(model);
+
         }
         [HttpPost]
-        public IActionResult WriterEditProfile(Writer p)
+        public async Task<IActionResult> WriterEditProfile(UserUpdateViewModel model)
         {
-            WriterValidator wl = new WriterValidator();
-            ValidationResult results = wl.Validate(p);
-            if (results.IsValid)
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            values.NameSurname = model.NameSurname;
+            values.ImageUrl = model.ImageUrl;
+            values.Email = model.Mail;
+            var result = await _userManager.UpdateAsync(values);
+            if (result.Succeeded)
             {
-                wm.TUpdate(p);
                 return RedirectToAction("Index", "Dashboard");
             }
             else
             {
-                foreach (var item in results.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
+                return View();
             }
-            return View();
+            
         }
 
         [AllowAnonymous]

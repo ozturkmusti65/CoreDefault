@@ -1,11 +1,13 @@
 ﻿using CoreDefault.BL.Concrete;
 using CoreDefault.Entity.Concrete;
 using CoreDefult.DAL.EntityFramework;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
 namespace CoreDefault.Web.Controllers
 {
+    [AllowAnonymous]
     public class ContactController : Controller
     {
         ContactManager cm = new ContactManager(new EFContactRepository());

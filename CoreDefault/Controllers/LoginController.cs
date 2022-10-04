@@ -46,39 +46,13 @@ namespace CoreDefault.Web.Controllers
             return View();
         }
 
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Login");
+        }
 
 
-        //[HttpPost]
-        //public async Task<IActionResult> Index(Writer p)
-        //{
-        //    Context c = new Context();
-        //    var datavalue = c.Writers.FirstOrDefault(x => x.Mail == p.Mail && x.Password == p.Password);
-        //    if (datavalue != null)
-        //    {
-        //        var claims = new List<Claim>
-        //        {
-        //            new Claim(ClaimTypes.Name, p.Mail),
-        //        };
-        //        var userIdentity = new ClaimsIdentity(claims, "a");
-        //        ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
-        //        await HttpContext.SignInAsync(principal);
-        //        return RedirectToAction("Index", "Dashboard");
-        //    }
-        //    else
-        //    {
-        //        return View();
-        //    }
-        //}
+        
     }
 }
-//Context c = new Context();
-//var datavalue = c.Writers.FirstOrDefault(x => x.Mail == p.Mail && x.Password == p.Password);
-//if (datavalue != null)
-//{
-//    HttpContext.Session.SetString("username", p.Mail);
-//    return RedirectToAction("Index", "Writer");
-//}
-//else
-//{
-//    return View();
-//}

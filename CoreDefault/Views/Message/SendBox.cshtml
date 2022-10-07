@@ -1,16 +1,16 @@
 ﻿@using CoreDefault.Entity.Concrete
 @model List<Message2>
 @{
-    ViewData["Title"] = "InBox";
+    ViewData["Title"] = "SendBox";
     Layout = "~/Views/Shared/WriterLayout.cshtml";
 }
 
-<h1>Gelen Kutusu</h1>
+<h1>Giden Kutusu</h1>
 <table class="table table-bordered">
     <tr>
         <th>#</th>
         <th>Konu</th>
-        <th>Gönderen</th>
+        <th>Alıcı</th>
         <th>Tarih</th>
         <th>Mesajı Aç</th>
     </tr>
@@ -19,7 +19,7 @@
         <tr>
             <th>@item.Id</th>
             <td>@item.Subject</td>
-            <td>@item.SenderUser.Name</td>
+            <td>@item.ReceiverUser.Name</td>
             <td>@(((DateTime)item.Date).ToString("dd-MMM-yyyy"))</td>
 
             <td><a href="/Message/MessageDetails/@item.Id" class="btn btn-warning">Mesajı Aç</a></td>

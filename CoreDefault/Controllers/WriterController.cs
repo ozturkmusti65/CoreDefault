@@ -52,6 +52,10 @@ namespace CoreDefault.Web.Controllers
         [AllowAnonymous]
         public PartialViewResult WriterNavbarPartial()
         {
+            Context c = new Context();
+            var usermail = User.Identity.Name;
+            var writerName = c.Writers.Where(w => w.Mail == usermail).Select(y => y.Name).FirstOrDefault();
+            ViewBag.wn=writerName;
             return PartialView();
         }
         [AllowAnonymous]

@@ -42,7 +42,7 @@ namespace CoreDefault.Web.Areas.Admin.Controllers
             var usermail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
             var writerId = c.Writers.Where(w => w.Mail == usermail).Select(y => y.Id).FirstOrDefault();
             p.SenderId = writerId;
-            p.ReveiverId = 8;
+            p.ReveiverId = 8;//ALICI AYARLANACAK
             p.Date = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             p.Status = true;
             mm.TAdd(p);

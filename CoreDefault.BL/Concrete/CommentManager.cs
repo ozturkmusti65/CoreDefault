@@ -27,5 +27,10 @@ namespace CoreDefault.BL.Concrete
         {
             return _commentDal.GetListAll(x => x.BlogId == id);
         }
+
+        public List<Comment> GetListWithBlog()
+        {
+            return _commentDal.GetListWithBlog();
+        }
     }
 }

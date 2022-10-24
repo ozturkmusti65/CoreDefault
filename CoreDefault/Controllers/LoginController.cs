@@ -52,7 +52,10 @@ namespace CoreDefault.Web.Controllers
             return RedirectToAction("Index", "Login");
         }
 
-
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
         
     }
 }

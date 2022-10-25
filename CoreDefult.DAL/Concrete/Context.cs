@@ -13,7 +13,9 @@ namespace CoreDefult.DAL.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("User ID=postgres;Password=1234;Server =localhost;Port=5432;Database=CoreDefaultDb;");
+            //optionsBuilder.UseNpgsql("User ID=postgres;Password=1234;Server =localhost;Port=5432;Database=CoreDefaultDb;");
+            //optionsBuilder.UseSqlServer(@"Data Source=CBS-C26TKJY\SQLEXPRESS;Initial Catalog=CoreDefaultDb;Integrated Security=true;Pooling=False;");
+            optionsBuilder.UseSqlServer(@"workstation id=CoreDefaultDb.mssql.somee.com;packet size=4096;user id=custom;pwd=123456789.;data source=CoreDefaultDb.mssql.somee.com;persist security info=False;initial catalog=CoreDefaultDb;Integrated Security=true;Pooling=False;");
             //optionsBuilder.UseNpgsql("User ID=root;Password=1234;Host=localhost;Port=5432;Database=CoreDefaultDb;Pooling=true;Min Pool Size=0;Max Pool Size=100;Connection Lifetime=0;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
